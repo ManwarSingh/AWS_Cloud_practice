@@ -1,7 +1,7 @@
 /*
 Author 			: Manwar Singh
-Creation Date 	: 11-Apr-2016
-Subject 		: Uploading file into Amazon s3 Account
+Creation Date    	: 11-Apr-2016
+Subject 		: Uploading file into Amazon s3 Account within a given bucket
 */
 import java.io.File;
 import java.io.IOException;
@@ -22,9 +22,11 @@ public class UploadObjectSingleOperation {
         AmazonS3 s3client = new AmazonS3Client(new ProfileCredentialsProvider());
         try {
             System.out.println("Uploading a new object to S3 from a file\n");
-            File file = new File(uploadFileName);
-            s3client.putObject(new PutObjectRequest(
-            		                 bucketName, keyName, file));
+            File file = new File(uploadFileName);         // Creation of File object 
+            s3client.putObject(new PutObjectRequest(      //Putting file into s3 bucket
+            		                 bucketName, keyName, file));   
+            		                 //Keyname - the path to specfied the file into account 
+            		                 //eg- http://s3.amazonaws.com/my-bucket/jpgs/sample.jpg
 
          } catch (AmazonServiceException ase) {
             System.out.println("Caught an AmazonServiceException, which " +
